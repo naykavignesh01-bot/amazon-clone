@@ -20,25 +20,24 @@ function Header({
 
         <nav>
           <button
-  className="signin-link"
-  onClick={() => setIsOpen(true)}
->
-  Sign In
-</button>
+            className="signin-link"
+            onClick={() => setIsOpen(true)}
+          >
+            Sign In
+          </button>
 
           <button
-  id="cart-button"
-  className={`cart-link ${
-    cartAnimate ? "cart-bounce" : ""
-  }`}
-  onClick={() => setShowCart(true)}
->
-  🛒 Cart ({cartCount})
-</button>
+            id="cart-button"
+            className={`cart-link ${
+              cartAnimate ? "cart-bounce" : ""
+            }`}
+            onClick={() => setShowCart(true)}
+          >
+            🛒 Cart ({cartCount})
+          </button>
         </nav>
       </header>
 
-      {/* Sirf Menu */}
       <div className="menu-bar">
         <span
           className="menu-category"
