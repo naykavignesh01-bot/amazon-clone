@@ -12,6 +12,7 @@ function App() {
   const [cart, setCart] = useState([]);
   const [showCart, setShowCart] = useState(false);
   const [cartAnimate, setCartAnimate] = useState(false);
+  const [search, setSearch] = useState("");
 
   const addToCart = (product, imageElement) => {
     const alreadyExists = cart.find((item) => item.id === product.id);
@@ -60,6 +61,9 @@ function App() {
     setCart((prev) => prev.filter((item) => item.id !== id));
   };
 
+  const filteredProducts = items.filter((product) =>
+  product.name.toLowerCase().includes(search.toLowerCase())
+  );
   return (
     <>
       <style>{`
@@ -182,7 +186,7 @@ function App() {
           gap: 20px;
         }
 
-        nav a {
+          nav a {
           color: white;
           text-decoration: none;
         }
@@ -196,7 +200,7 @@ function App() {
           height: 350px;
           object-fit: contain;
           background: #e3e6e6;
-          display: block;
+            display: block;
         }
 
         .banner-btn {
@@ -205,8 +209,8 @@ function App() {
           transform: translateY(-50%);
           background: transparent;
           color: #333;
-          border: none;
-          font-size: 60px;
+              border: none;
+              font-size: 60px;
           cursor: pointer;
           padding: 0 10px;
           transition: 0.3s;
@@ -215,7 +219,7 @@ function App() {
         .banner-btn:hover {
           color: black;
           transform: translateY(-50%) scale(1.1);
-        }
+            }
 
         .banner-btn.left {
           left: 15px;
@@ -261,7 +265,7 @@ function App() {
           background: transparent;
           border: none;
           color: white;
-          font-size: 20px;
+            font-size: 20px;
           cursor: pointer;
           font-weight: bold;
         }
@@ -316,7 +320,7 @@ function App() {
           .grid {
             grid-template-columns: 1fr;
           }
-        }
+            }
 
         .card {
           background: white;
@@ -337,7 +341,7 @@ function App() {
         .button-group {
           display: flex;
           gap: 10px;
-          margin-top: 15px;
+                    margin-top: 15px;
         }
 
         .buy-btn,
@@ -359,7 +363,7 @@ function App() {
           background: #fcab32;
         }
 
-        .cart-btn {
+    .cart-btn {
           background: #ffd814;
         }
 
@@ -418,11 +422,13 @@ function App() {
       `}</style>
 
       <Header
-        setIsOpen={setIsOpen}
-        cartCount={cart.length}
-        setShowCart={setShowCart}
-        cartAnimate={cartAnimate}
-      />
+  setIsOpen={setIsOpen}
+  cartCount={cart.length}
+  setShowCart={setShowCart}
+  cartAnimate={cartAnimate}
+  search={search}
+  setSearch={setSearch}
+/>
 
       <Sidebar
         isOpen={isOpen}
@@ -436,14 +442,14 @@ function App() {
       </div>
 
       <div className="grid">
-        {items.map((product) => (
-          <ProductCard
-            key={product.id}
-            product={product}
-            addToCart={addToCart}
-          />
-        ))}
-      </div>
+  {filteredProducts.map((product) => (
+    <ProductCard
+      key={product.id}
+      product={product}
+      addToCart={addToCart}
+    />
+  ))}
+</div>
 
       {showCart && (
         <div className="cart-sidebar">
@@ -470,10 +476,7 @@ function App() {
             ))
           )}
 
-          <button
-            className="close-cart"
-            onClick={() => setShowCart(false)}
-          >
+          <button className="close-cart" onClick={() => setShowCart(false)}>
             Close
           </button>
         </div>

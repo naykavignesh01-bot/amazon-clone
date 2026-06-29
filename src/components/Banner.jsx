@@ -16,33 +16,22 @@ function Banner() {
   };
 
   const prevBanner = () => {
-    setCurrent((prev) =>
-      prev === 0 ? banners.length - 1 : prev - 1
-    );
+    setCurrent((prev) => (prev === 0 ? banners.length - 1 : prev - 1));
   };
 
   return (
-  <div className="banner">
-    <button
-      className="banner-btn left"
-      onClick={prevBanner}
-    >
-      &#10094;
-    </button>
+    <div className="banner">
+      <button className="banner-btn left" onClick={prevBanner}>
+        &#10094;
+      </button>
 
-    <img
-      src={banners[current]}
-      alt={`Banner ${current + 1}`}
-    />
+      <img src={banners[current]} alt={`Banner ${current + 1}`} />
 
-    <button
-      className="banner-btn right"
-      onClick={nextBanner}
-    >
-      &#10095;
-    </button>
-  </div>
-);
+      <button className="banner-btn right" onClick={nextBanner}>
+        &#10095;
+      </button>
+    </div>
+  );
 }
 
 export default Banner;
